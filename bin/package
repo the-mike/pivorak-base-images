@@ -1,0 +1,11 @@
+#!/bin/bash
+
+TAG=$1
+
+[ -z "$TAG" ] && echo "Tag not specified" && exit 1
+
+echo 'Creating builder image'
+docker build "builder" -t be-builder:$TAG-ruby-2.3.1
+echo 'Creating runtime image'
+docker build "runtime" -t be-runtime:$TAG-ruby-2.3.1
+# docker push "$REGISTRY:$TAG"
